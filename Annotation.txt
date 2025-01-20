@@ -1,1 +1,2 @@
 --- exercicio pra criar uma todo-list 
+criando rota pra cadastrar uma tarefa
