@@ -44,7 +44,10 @@ app.post('/to-do/:id', (req, res) => {
         return res.status(404).json({error: 'User does not exists'});
     }
 
-    const todo ={
+    const todo_id = uuidv4();
+
+    const todo = {
+        todo_id,
         name,
         description,
         created_at: new Date(),
