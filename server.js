@@ -16,13 +16,19 @@ app.get('/users', (req, res) => {
 app.post('/users', (req, res) => {
     const {name , email , password} = req.body;
 
+    const verifyIfUserAlreadyExists = users.find((user) => user.email === email)
+
+    if(verifyIfUserAlreadyExists) {
+        return res.status(400).json({error: 'User already exists'});
+    }
+    
     const user = {
         id: uuidv4(),
         name,
         email,
         password
     }
-    
+
     users.push(user);
     res.status(201).json(user);
 });
