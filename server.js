@@ -81,7 +81,16 @@ app.delete('/to-do/:id', (req, res) => {
         return res.status(404).json({error: 'User does not exists'});
     }
 
-    const todo = toDo.filter((todo) => todo.user_id === id);
+    const todo = toDo.find((todo) => todo.user_id === id);
+
+    const todoIndex = toDo.indexOf(todo);
+
+    if(todoIndex === -1) {
+        return res.status(404).json({error: 'Todo does not exists'});
+    }
+
+    toDo.splice(todoIndex, 1);
+    
     res.status(200).json(todo);
 });
 
